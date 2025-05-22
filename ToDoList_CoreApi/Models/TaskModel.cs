@@ -1,4 +1,6 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using Microsoft.AspNetCore.Identity;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace ToDoList_CoreApi.Models
 {
@@ -12,6 +14,12 @@ namespace ToDoList_CoreApi.Models
         [Required(ErrorMessage = "Due date is required")]
         public DateTime DueDate { get; set; }
         public bool IsCompleted { get; set; } = false;
+
+
+        public string? UserId { get; set; }
+
+        [ForeignKey("UserId")]
+        public IdentityUser? User { get; set; }
 
 
 
