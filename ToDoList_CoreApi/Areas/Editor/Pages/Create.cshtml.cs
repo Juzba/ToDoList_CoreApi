@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
@@ -10,9 +11,10 @@ using ToDoList_CoreApi.Models;
 
 namespace ToDoList_CoreApi.Pages.ToDoList
 {
-    public class CreateModel(ApplicationDbContext context) : PageModel
+    public class CreateModel(ApplicationDbContext context, UserManager<IdentityUser> userManager) : PageModel
     {
         private readonly ApplicationDbContext _context = context;
+        private readonly UserManager<IdentityUser> _userManager = userManager;
 
         public IActionResult OnGet()
         {
@@ -28,7 +30,7 @@ namespace ToDoList_CoreApi.Pages.ToDoList
             {
                 return Page();
             }
-
+            TaskModel.UserId = _userManager.GetUserId(User)!; 
             _context.Tasks.Add(TaskModel);
             await _context.SaveChangesAsync();
 
