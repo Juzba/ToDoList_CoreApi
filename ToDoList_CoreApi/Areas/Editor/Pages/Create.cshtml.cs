@@ -9,7 +9,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using ToDoList_CoreApi.Data;
 using ToDoList_CoreApi.Models;
 
-namespace ToDoList_CoreApi.Pages.ToDoList
+namespace ToDoList_CoreApi.Areas.Editor.Pages
 {
     public class CreateModel(ApplicationDbContext context, UserManager<IdentityUser> userManager) : PageModel
     {
